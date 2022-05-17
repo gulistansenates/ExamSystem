@@ -27,14 +27,17 @@ namespace ExamLoginandRegisterSystem
             {
                 MessageBox.Show("Username and Password fields are empty", "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             else if (txtPassword.Text == txtComPassword.Text) 
              {
                 con.Open();
-                string register = "INSERT INTO tbl_users VALUES (' " + txtUsername.Text + " ' , ' " + txtPassword.Text + " ');
+                string register = "INSERT INTO tbl_users VALUES (' " + txtUsername.Text + " ' , ' " + txtPassword.Text + " ')";
                 cmd = new SqlConnection(register, con);
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                txtUsername.Text = "";
+                txtPassword.Text = "";
+                txtComPassword.Text = "";
 
                 MessageBox.Show("Your Account has been Successfully Created ", "Registration Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
              }
@@ -45,6 +48,34 @@ namespace ExamLoginandRegisterSystem
                 txtComPassword.Text = "";
                 txtPassword.Focus();
             }
+        }
+
+        private void CheckbxShowPass_CheckedChanged(object sender, EventArgs e)
+        {
+            if(CheckbxShowPass.Checked)
+            {
+                txtPassword.PasswordChar = '\0';
+                txtComPassword.PasswordChar = '\0';
+            }
+            else
+            {
+                txtPassword.PasswordChar = '*';
+                txtComPassword.PasswordChar = '*';
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            txtUsername.Text = "";
+            txtPassword.Text = "";
+            txtComPassword.Text = "";
+            txtUsername.Focus();
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            new frmLogin().Show();
+            this.Hide();
         }
     }
 }

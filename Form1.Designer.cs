@@ -82,6 +82,7 @@ namespace ExamLoginandRegisterSystem
             this.txtPassword.Location = new System.Drawing.Point(33, 215);
             this.txtPassword.Multiline = true;
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(216, 28);
             this.txtPassword.TabIndex = 4;
             // 
@@ -102,6 +103,7 @@ namespace ExamLoginandRegisterSystem
             this.txtComPassword.Location = new System.Drawing.Point(33, 284);
             this.txtComPassword.Multiline = true;
             this.txtComPassword.Name = "txtComPassword";
+            this.txtComPassword.PasswordChar = '*';
             this.txtComPassword.Size = new System.Drawing.Size(216, 28);
             this.txtComPassword.TabIndex = 6;
             // 
@@ -125,6 +127,7 @@ namespace ExamLoginandRegisterSystem
             this.CheckbxShowPass.TabIndex = 7;
             this.CheckbxShowPass.Text = "Show Password";
             this.CheckbxShowPass.UseVisualStyleBackColor = true;
+            this.CheckbxShowPass.CheckedChanged += new System.EventHandler(this.CheckbxShowPass_CheckedChanged);
             // 
             // button1
             // 
@@ -153,6 +156,7 @@ namespace ExamLoginandRegisterSystem
             this.button2.TabIndex = 9;
             this.button2.Text = "CLEAR";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label5
             // 
@@ -173,6 +177,7 @@ namespace ExamLoginandRegisterSystem
             this.label6.Size = new System.Drawing.Size(101, 17);
             this.label6.TabIndex = 11;
             this.label6.Text = "Back to LOG IN";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // frmRegister
             // 
