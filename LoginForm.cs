@@ -18,20 +18,50 @@ namespace ExamLoginandRegisterSystem
             InitializeComponent();
         }
         SqlConnection con = new SqlConnection("Data Source=DESKTOP-OA42U4M\\SQLEXPRESS;Initial Catalog=ExamSystem;Integrated Security=True");
-        SqlConnection cmd = new SqlConnection();
+        SqlCommand cmd = new SqlCommand();
         SqlDataAdapter da = new SqlDataAdapter();
 
         private void button1_Click(object sender, EventArgs e)
         {
-           /* con.Open();
+            con.Open();
             string login = "SELECT * FROM tbl_users WHERE username = '"+txtUsername.Text+"' and password = '"+txtPassword.Text+"'";
             cmd = new SqlCommand(login, con);
-            SqlDataReader dr = cmd.ExecuteReader();*/
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.Read()== true)
+            {
+                MessageBox.Show("sucess ", "Login success", MessageBoxButtons.OK);
+
+            }
+            else
+            {
+                MessageBox.Show("Invalid Username or Password, Please Try Again ", "Login Failed", MessageBoxButtons.OK);
+                txtUsername.Text = "";
+                txtPassword.Text = "";
+                txtUsername.Focus();
+            }
         }
 
-        private void LoginForm_Load(object sender, EventArgs e)
+        private void CheckbxShowPass_CheckedChanged(object sender, EventArgs e)
         {
+            if (CheckbxShowPass.Checked)
+            {
+                txtPassword.PasswordChar = '\0';
+            }
+            else
+            {
+                txtPassword.PasswordChar = '*';
+            }
 
+            
+    }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+                txtUsername.Text = "";
+                txtPassword.Text = "";
+                txtUsername.Focus();
+           }
         }
     }
-}

@@ -16,7 +16,7 @@ namespace ExamLoginandRegisterSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmRegister());
+            Application.Run(new LoginForm());
         }
     }
 }
