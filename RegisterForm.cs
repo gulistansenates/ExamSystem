@@ -18,20 +18,20 @@ namespace ExamLoginandRegisterSystem
             InitializeComponent();
         }
         SqlConnection con = new SqlConnection("Data Source=DESKTOP-OA42U4M\\SQLEXPRESS;Initial Catalog=ExamSystem;Integrated Security=True");
-        SqlConnection cmd = new SqlConnection();
-        SqlDataAdapter da = new SqlDataAdapter();
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (txtUsername.Text == "" && txtPassword.Text == "" && txtComPassword.Text == "") ;
+            if (txtUsername.Text == "" || txtPassword.Text == "" || txtComPassword.Text == "") 
             {
-                MessageBox.Show("Username and Password fields are empty", "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Username or Password fields are empty", "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (txtPassword.Text == txtComPassword.Text) 
              {
                 con.Open();
-                string register = "INSERT INTO tbl_users VALUES (' " + txtUsername.Text + " ' , ' " + txtPassword.Text + " ')";
-                cmd = new SqlConnection(register, con);
+                string register = "INSERT INTO tbl_users VALUES (@username,@password)";
+                SqlCommand cmd = new SqlCommand(register, con);
+                cmd.Parameters.AddWithValue("@username", txtUsername.Text.Trim());
+                cmd.Parameters.AddWithValue("@password", txtPassword.Text.Trim());
                 cmd.ExecuteNonQuery();
                 con.Close();
 
@@ -74,8 +74,13 @@ namespace ExamLoginandRegisterSystem
 
         private void label6_Click(object sender, EventArgs e)
         {
-            new frmLogin().Show();
+            
             this.Hide();
+        }
+
+        private void frmRegister_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
